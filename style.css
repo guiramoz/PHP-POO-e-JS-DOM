@@ -226,3 +226,12 @@ footer{
     padding: 10px;
     border-top: 1px solid var(--border-color);
 }
+
+.erro-msg{
+    color: var(--primary-color);
+    font-size: 0.9em;
+    margin-top: 5px;
+    display: block;
+    min-height: 1.2em;
+}
+

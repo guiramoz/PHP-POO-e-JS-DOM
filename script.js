@@ -66,9 +66,60 @@ function alternarClasse(elemento, estaValido) {
     
 }
 
-form.addEventListener ('submit', (e) =>{
-    e.preventDefault();
-    alert('Formúlario enviado com sucesso!')
-})
+    form.addEventListener('submit', function (event) {
+        event.preventDefault(); //impede que o form seja enviado 
+        validarFormulario(); //chama a função validar formulário
+    });
 
 })
+
+//selecionar os elementos do formulário
+
+const inputNome = document.getElementById('nome')
+const erroNome = document.getElementById('erro-nome')
+const inputEmail = document.getElementById('email')
+const erroEmail = document.getElementById('erro-email')
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
+
+function validarFormulario() {
+    valido = true // FLAG: monitora o estado de validade do formulário
+    
+
+    /*validação do nome (obrigatório) */
+    //critério de aceite 1: o campo nome não pode ser vazio ou nulo
+
+    if (inputNome.value.trim() === '') { //pega po campo input nome e remove espaços em branco 
+         /*se o camppo estiver vazio, após removes espaços em branco */
+         erroNome.textContent = '* O nome é obrigatório'
+         erroNome.classList.add('erro-msg')
+         valido = false
+    }
+    else{
+        /*caso o campo não esteja vazio o erro deve ser limpo */
+        erroNome.textContent = ' '
+        erroNome.classList.remove('erro-msg')
+    }
+
+    //validação do email
+    //critério de aceite 1: o campo não pode estar vazio
+    //critério de aceite 2: o email digitado precisa ser txto@texto.texto
+    if (inputEmail.value.trim() === '') {
+        erroEmail.textContent = '* O e-mail é obrigatório'
+        erroEmail.classList.add('erro-msg')
+        valido = false
+    }
+    
+    else if (!emailRegex.test(inputEmail.value)) {
+        erroEmail.textContent = '* Digite um email válido';
+        erroEmail.classList.add('erro-msg');
+        valido = false;
+    }
+    
+    else{
+        /*está tudo ok: email não está vzaio e segue o regex */
+        erroEmail.textContent = ' '
+        erroEmail.classList.remove('erro-msg')
+    }
+    return valido
+}
