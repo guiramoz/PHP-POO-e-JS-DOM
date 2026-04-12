@@ -35,24 +35,26 @@ inputSenha.addEventListener('input', () => {
     const hasSpecial = /[!@#$%¨&*()_<>?.]/.test(valor);
     alternarClasse(reqSpecial, hasSpecial);
 
-    if (hasLength && hasUpper && hasNumber && hasSpecial) {
-    // habilita o botão
-    btnSubmit.disabled = false;
-    btnSubmit.style.cursor = 'pointer';
-    } else {
-    // desabilita o botão
-    btnSubmit.disabled = true;
-    btnSubmit.style.cursor = 'not-allowed';
-    }
+        if (hasLength && hasUpper && hasNumber && hasSpecial) {
+            btnSubmit.disabled = false;
+            btnSubmit.style.cursor = 'pointer';
+        } else {
+            btnSubmit.disabled = true;
+            btnSubmit.style.cursor = 'not-allowed';
+        }
+    });
 
+    form.addEventListener('submit', function (event) {
+        if (!validarFormulario()) {
+            event.preventDefault();
+        }
+    });
+});
 
-    }) 
-
-//função para trocar a cor do texto
 function alternarClasse(elemento, estaValido) {
     const icone = elemento.querySelector('i');
 
-    if(estaValido){
+    if (estaValido) {
         elemento.classList.add('valid');
         elemento.classList.remove('invalid');
         icone.classList.remove('ph-circle');
@@ -61,29 +63,18 @@ function alternarClasse(elemento, estaValido) {
         elemento.classList.remove('valid');
         elemento.classList.add('invalid');
         icone.classList.remove('ph-check-circle');
-        icone.classList.add('ph-circle')
+        icone.classList.add('ph-circle');
     }
-    
 }
 
-    form.addEventListener('submit', function (event) {
-        event.preventDefault(); //impede que o form seja enviado 
-        validarFormulario(); //chama a função validar formulário
-    });
-
-})
-
-//selecionar os elementos do formulário
-
-const inputNome = document.getElementById('nome')
-const erroNome = document.getElementById('erro-nome')
-const inputEmail = document.getElementById('email')
-const erroEmail = document.getElementById('erro-email')
-const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-
+const inputNome = document.getElementById('nome');
+const erroNome = document.getElementById('erro-nome');
+const inputEmail = document.getElementById('email');
+const erroEmail = document.getElementById('erro-email');
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 function validarFormulario() {
-    valido = true // FLAG: monitora o estado de validade do formulário
+    let valido = true // FLAG: monitora o estado de validade do formulário
     
 
     /*validação do nome (obrigatório) */
@@ -121,5 +112,7 @@ function validarFormulario() {
         erroEmail.textContent = ' '
         erroEmail.classList.remove('erro-msg')
     }
-    return valido
+
+    return valido;
 }
+

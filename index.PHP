@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Desenvolvimento Web com JS</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 </head>
 
@@ -68,23 +68,23 @@
     <section id="cadastro" class="section-pad bg-darker">
         <div class="container form-wrapper">
             <h2>Garanta a sua vaga</h2>
-            <form id="formCadastro" novalidate>
+            <form id="formCadastro" action="contrCurso.php" method="get" novalidate>
                 
                 <div class="input-group">
                     <label for="nome">Nome completo:</label>
-                    <input type="text" id="nome" placeholder="Seu nome">
+                    <input type="text" id="nome" name="nome" placeholder="Seu nome">
                     <small id="erro-nome" class="erro-msg"></small>
                 </div>
 
                 <div class="input-group">
                     <label for="email">E-mail:</label>
-                    <input type="email" id="email" placeholder="Seu@email.com">
+                    <input type="email" id="email" name="email" placeholder="Seu@email.com">
                     <small id="erro-email" class="erro-msg"></small>
                 </div>
 
                 <div class="input-group">
                     <label for="senha">Senha:</label>
-                    <input type="password" id="senha" placeholder="Mínimo 8 caracteres">
+                    <input type="password" id="senha" name="senha" placeholder="Mínimo 8 caracteres">
                 
 
                 <ul class="validation-list">
@@ -94,7 +94,7 @@
                     <li id="req-special" class="invalid"><i class="ph ph-circle"></i>Caractere especial</li>
                 </ul>
                 </div>
-                <button type="submit" id="btnSubmit" class="btn btn-full" disabled>FINALIZAR CADASTRO</button>                
+                <button type="submit" name="Inserir" id="btnSubmit" class="btn btn-full" disabled>FINALIZAR CADASTRO</button>                
             </form>
     </section>
 
@@ -102,7 +102,7 @@
         <p>&copy; 2026 CodinLabs. Todos os direitos reservados</p>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="js/script.js"></script>
 
 </body>
 </html>
